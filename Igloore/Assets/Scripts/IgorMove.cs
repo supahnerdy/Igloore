@@ -37,18 +37,20 @@ public class ForwardMovement : MonoBehaviour
         transform.Rotate(turning);
 
         // Allow Igor to jump
-        if (Input.GetKeyDown(KeyCode.Space) && onGround)
+        if (Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             onGround = false;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+    void OnCollisionEnter(Collision col)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (col.gameObject.CompareTag("Ground"))
         {
             onGround = true;
         }
     }
+    
 }
