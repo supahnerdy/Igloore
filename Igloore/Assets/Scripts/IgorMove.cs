@@ -9,6 +9,8 @@ public class ForwardMovement : MonoBehaviour
     public float jumpHeight = 5f;
     public bool onGround = true;
 
+    public Animator animate;
+
     private float goMove;
     private float goTurn;
     private Rigidbody rb;
@@ -41,6 +43,15 @@ public class ForwardMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             onGround = false;
+        }
+
+        // Configure Igor's animations
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        {
+            animate.Play("Igor Walk");
+        } else
+        {
+            animate.Play("Igor Idle");
         }
     }
 
