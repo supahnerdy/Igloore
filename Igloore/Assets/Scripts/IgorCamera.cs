@@ -4,42 +4,36 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public Transform player;  // Reference to the player's transform
-    public Vector3 offset = new Vector3(0f, 2f, -5f);  // Offset from the player
-    public float rotationSpeed = 5f;  // Speed of camera rotation
-    public float maxDistance = 10f;   // Maximum distance the camera can be from the player
+    public Transform player;  // get the transform position of Igor. ~TW
+    public Vector3 offset = new Vector3(0f, 2f, -5f);  // offset the camera from the player. ~TW
+    public float rotationSpeed = 5f;  // how fast camera will rotate. ~TW
+    public float maxDistance = 10f;   // how far the camera can be from Igor. ~TW
 
-    private void Start()
-    {
-        // this.transform.parent = player.transform;
-    }
-
-    void LateUpdate()
+    void LateUpdate() // LateUpdate is IMPORTANT for smooth "delayed" camera scrolling. ~TW
     {
         if (player != null)
         {
-            // Calculate the desired position of the camera
+            // Camera should sit behind Igor, neg forward to offset looking behind. ~TW
             Vector3 desiredPosition = player.position + -player.forward * offset.z + player.up * offset.y;
 
-            // Smoothly interpolate between the current camera position and the desired position
+            // Lerp & Time.deltaTime are used to smoothen the camera when FOV is moving, w/ rotation speed. ~TW
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, rotationSpeed * Time.deltaTime);
-
-            // Set the position of the camera to the smoothed position
             transform.position = smoothedPosition;
 
-            // Check for obstacles between the camera and player
+            // Raycast is used to help prevent camera from clipping through objects. ~TW
             RaycastHit hit;
             if (Physics.Raycast(player.position, smoothedPosition - player.position, out hit, maxDistance))
             {
-                // If an obstacle is detected, adjust the camera position to avoid it
+                // If camera hits an object, set the pos to the exact collision location of camera & obj. ~TW
                 transform.position = hit.point;
             }
             else
             {
-                // No obstacles, update the camera's position
+                // no collisions ~TW
                 transform.position = smoothedPosition;
             }
-            // Make the camera look at the player
+
+            // always focus camera on player. ~TW
             transform.LookAt(player);
         }
     }

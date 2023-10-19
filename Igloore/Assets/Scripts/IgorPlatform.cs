@@ -6,23 +6,13 @@ public class IgorPlatform : MonoBehaviour
 {
     public GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // so Igor can stick on moving platforms, need to temp set parent. ~TW
     void OnCollisionEnter(Collision col)
     {
         col.transform.parent = this.transform;
     }
 
+    // remove parent property when stepping off platform. ~TW
     void OnCollisionExit(Collision col)
     {
         col.transform.parent = null;

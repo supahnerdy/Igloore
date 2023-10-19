@@ -5,9 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    public void PlayGame()
+    [SerializeField] private GameObject titleScreen;
+    [SerializeField] private GameObject aboutPage;
+    // Start is called before the first frame update
+    void Start()
     {
-        SceneManager.LoadScene("LevelScene");
+        titleScreen.SetActive(true);
+        aboutPage.SetActive(false);
+        Cursor.visible = true;
+    }
+    public void PlayGame() // upon hitting the play button: ~TW
+    {
+        SceneManager.LoadScene("LevelScene"); // load the first level. ~TW
+        Time.timeScale = 1f; // make sure time is unfrozen incase it was before. ~TW
+    }
+    public void AboutPage() // switch to about ~TW
+    {
+        titleScreen.SetActive(false);
+        aboutPage.SetActive(true);
+    }
+    public void BackToMain() // switch to main ~TW
+    {
+        aboutPage.SetActive(false);
+        titleScreen.SetActive(true);
     }
 }
 

@@ -673,6 +673,7 @@ MonoBehaviour:
   rotationSpeed: 200
   jumpHeight: 20
   onGround: 1
+  walk: {fileID: 0}
 --- !u!95 &9011417655283921943
 Animator:
   serializedVersion: 5
