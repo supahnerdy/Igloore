@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IgorRespawn : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class IgorRespawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.transform.position = offset; // offset is set to spawnpoint in editor ~TW
+        if (other.gameObject.CompareTag("Igor"))
+        {
+            player.transform.position = offset; // offset is set to spawnpoint in editor ~TW
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // lose snowflake upon death ~TW
+        }
+
     }
 }

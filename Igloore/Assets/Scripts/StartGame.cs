@@ -10,9 +10,9 @@ public class StartGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         titleScreen.SetActive(true);
         aboutPage.SetActive(false);
-        Cursor.visible = true;
     }
     public void PlayGame() // upon hitting the play button: ~TW
     {

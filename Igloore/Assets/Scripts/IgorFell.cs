@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IgorFell : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class IgorFell : MonoBehaviour
         if (transform.position.y < border)
         {
             transform.position = spawnPoint;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // lose snowflake upon death ~TW
         }
         
     }
