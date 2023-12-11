@@ -6,7 +6,7 @@ public class ThirdPersonCamera : MonoBehaviour
 {
     public Transform player;  // get the transform position of Igor. ~TW
     public Vector3 offset = new Vector3(0f, 2f, -5f);  // offset the camera from the player. ~TW
-    public float rotationSpeed = 5f;  // how fast camera will rotate. ~TW
+    private float rotationSpeed = 100f;  // how fast camera will rotate. ~TW
     public float maxDistance = 10f;   // how far the camera can be from Igor. ~TW
 
     void LateUpdate() // LateUpdate is IMPORTANT for smooth "delayed" camera scrolling. ~TW
